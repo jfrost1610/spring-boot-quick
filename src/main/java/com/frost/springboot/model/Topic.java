@@ -3,12 +3,17 @@
  */
 package com.frost.springboot.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * @author jobin
  *
  */
+@Entity
 public class Topic {
 
+	@Id
 	private String id;
 	private String name;
 	private String description;
