@@ -5,29 +5,25 @@ package com.frost.springboot.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * @author jobin
  *
  */
 @Entity
-public class Topic {
+public class Course {
 
 	@Id
 	private String id;
 	private String name;
 	private String description;
 
-	public Topic() {
+	@ManyToOne
+	private Topic topic;
 
-	}
+	public Course() {
 
-	/**
-	 * @param id
-	 */
-	public Topic(String id) {
-		super();
-		this.id = id;
 	}
 
 	/**
@@ -35,7 +31,7 @@ public class Topic {
 	 * @param name
 	 * @param description
 	 */
-	public Topic(String id, String name, String description) {
+	public Course(String id, String name, String description) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -85,6 +81,21 @@ public class Topic {
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	/**
+	 * @return the topic
+	 */
+	public Topic getTopic() {
+		return topic;
+	}
+
+	/**
+	 * @param topic
+	 *            the topic to set
+	 */
+	public void setTopic(Topic topic) {
+		this.topic = topic;
 	}
 
 }
