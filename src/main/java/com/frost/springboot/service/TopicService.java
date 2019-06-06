@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.frost.springboot.model.Topic;
 import com.frost.springboot.repo.TopicRepository;
@@ -32,7 +33,10 @@ public class TopicService {
 		return topicRepository.findById(id).get();
 	}
 
-	public void createTopic(Topic topic) {
+	public void createTopic(Topic topic) throws Exception {
+		if (StringUtils.isEmpty(topic.getId())) {
+			throw new Exception("Topic Id cannot be empty!");
+		}
 		topicRepository.save(topic);
 	}
 

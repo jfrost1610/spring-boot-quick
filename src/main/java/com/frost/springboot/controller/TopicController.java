@@ -3,8 +3,6 @@
  */
 package com.frost.springboot.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.frost.springboot.model.Topic;
+import com.frost.springboot.model.TopicsResponse;
 import com.frost.springboot.service.TopicService;
 
 /**
@@ -27,8 +26,10 @@ public class TopicController {
 	private TopicService topicService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Topic> getAllTopics() {
-		return topicService.getAllTopics();
+	public TopicsResponse getAllTopics() {
+		TopicsResponse response = new TopicsResponse();
+		response.setTopics(topicService.getAllTopics());
+		return response;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -37,7 +38,7 @@ public class TopicController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public void createTopic(@RequestBody Topic topic) {
+	public void createTopic(@RequestBody Topic topic) throws Exception {
 		topicService.createTopic(topic);
 	}
 
